@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+
+int* SelectionSort(int array[], int size) {
+	int indexStartSort;
+	int index0; //наименьший элемент в поиске массива
+	int index1; // наименьший элемент в текущем поиске
+	int a; //переходный режим
+	for (indexStartSort = 0; indexStartSort < size - 1; indexStartSort++) {
+		index0 = indexStartSort;
+		for (index1 = index0 + 1; index1 < size; index1++) {
+			if (array[index1] < array[index0])
+				index0 = index1;
+		}
+		a = array[indexStartSort];
+		array[indexStartSort] = array[index0];
+		array[index0] = a;
+	}
+	return array;
+}
+
+
+
+int main() {
+	int i;
+	int array[] = { -41, 23, -8, 0, 19, 16, 26, 34, 53, 65 };
+	int* m = SelectionSort(array, 10);
+	for (i = 0; i < 10; i++)
+	{
+		cout << "array[" << i << "]= " << m[i] << "\n"; // На экран через пробелы выводятся все элементы массива
+	}
+}
