@@ -1,0 +1,25 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+double RectangleIntegration(double(&func)(double), double bottomEdge, double topEdge, int stepCount) {
+	int i;
+	double integ, shag, e0;
+	shag = (topEdge - bottomEdge) / stepCount;
+    integ = 0.0;
+    e0 = 0;
+	for (i = 0; i <= stepCount-1; i++) {
+        integ = integ + shag * func(bottomEdge + shag * (i) );
+	}
+	return integ;
+}
+
+double f(double x)
+{
+    return x * x * x;
+}
+
+int main()
+{
+    cout << RectangleIntegration(f, 0.0, 9.0, 100) << "\n";
+}
